@@ -985,7 +985,43 @@ endif
 if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'toml') == -1
   
 " Rust uses several TOML config files that are not named with .toml.
-autocmd BufNewFile,BufRead *.toml,Cargo.lock,.cargo/config set filetype=toml
+autocmd BufNewFile,BufRead *.toml,Cargo.lock,*/.cargo/config set filetype=toml
+
+endif
+
+" ftdetect/twig.vim
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'twig') == -1
+  
+if exists("did_load_filetypes")
+  finish
+endif
+augroup filetypedetect
+  au BufRead,BufNewFile *.twig call s:Setf(expand('<amatch>'))
+augroup END
+
+function! s:Setf(filename)
+  " Check verbose as in autoload/gzip.vim .
+  let prefix = (&verbose < 8) ? 'silent!' : ''
+
+  " Use the base filename to set the filetype, but save autocommands for
+  " later, so that we do not execute them twice.
+  let ei_save = &eventignore
+  set eventignore=FileType
+  try
+    let basefile = fnamemodify(a:filename, ':r')
+    execute prefix 'doau BufRead' basefile
+  finally
+    let &eventignore = ei_save
+  endtry
+
+  if !strlen(&ft)
+    " Default to HTML twig template.
+    let ft = 'html.twig'
+  else
+    let ft = &ft . (&ft =~ '\<twig\>' ? '' : '.twig')
+  endif
+  execute prefix 'set filetype=' . ft
+endfun
 
 endif
 
@@ -1015,6 +1051,20 @@ endif
 if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'vm') == -1
   
 au BufRead,BufNewFile *.vm set ft=velocity syntax=velocity
+
+endif
+
+" ftdetect/vim-literate-coffeescript.vim
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'coffee-script') == -1
+  
+" Language:   Literate CoffeeScript
+" Maintainer: Michael Smith <michael@diglumi.com>
+" URL:        https://github.com/mintplant/vim-literate-coffeescript
+" License:    MIT
+
+autocmd BufNewFile,BufRead *.litcoffee set filetype=litcoffee
+autocmd BufNewFile,BufRead *.coffee.md set filetype=litcoffee
+
 
 endif
 

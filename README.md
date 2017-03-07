@@ -114,7 +114,7 @@ If you need full functionality of any plugin, please use it directly with your p
 - [tmux](https://github.com/keith/tmux.vim) (syntax, ftplugin, ftdetect)
 - [tomdoc](https://github.com/wellbredgrapefruit/tomdoc.vim) (syntax)
 - [toml](https://github.com/cespare/vim-toml) (syntax, ftplugin, ftdetect)
-- [twig](https://github.com/lumiliet/vim-twig) (syntax, indent, ftplugin)
+- [twig](https://github.com/hlidotbe/vim-twig) (syntax, indent, ftplugin, ftdetect)
 - [typescript](https://github.com/leafgarland/typescript-vim) (syntax, indent, compiler, ftplugin, ftdetect)
 - [vala](https://github.com/arrufat/vala.vim) (syntax, indent, ftdetect)
 - [vbnet](https://github.com/vim-scripts/vbnet.vim) (syntax)

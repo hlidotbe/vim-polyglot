@@ -187,7 +187,7 @@ PACKS="
   tmux:keith/tmux.vim
   tomdoc:wellbredgrapefruit/tomdoc.vim
   toml:cespare/vim-toml
-  twig:lumiliet/vim-twig
+  twig:hlidotbe/vim-twig
   typescript:leafgarland/typescript-vim
   vala:arrufat/vala.vim
   vbnet:vim-scripts/vbnet.vim
